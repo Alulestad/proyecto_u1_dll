@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.spring.boot.CitaMedicaSB;
 import com.example.demo.spring.boot.MedicoSB;
+import com.example.demo.spring.boot.PacienteCancerSB;
 import com.example.demo.spring.boot.PacienteTerceraEdadSB;
 
 
@@ -17,6 +18,9 @@ import com.example.demo.spring.boot.PacienteTerceraEdadSB;
 public class ProyectoU1DllApplication implements CommandLineRunner{
 	@Autowired
 	private PacienteTerceraEdadSB pacientTE;
+	
+	@Autowired
+	private PacienteCancerSB cancerSB;
 	
 	@Autowired
 	private CitaMedicaSB cita;
@@ -41,7 +45,12 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 		this.pacientTE.setCedula("15458742512");
 		
 		System.out.println(pacientTE);
-		cita.agendar("123123", LocalDateTime.of(2022,12 ,2,8,30), pacientTE, medico);
+		
+		this.cancerSB.setCedula("adsf");
+		this.cancerSB.setNombre("Daniel");
+		this.cancerSB.setTipo("C");
+		
+		cita.agendar("123123", LocalDateTime.of(2022,12 ,2,8,30), this.cancerSB, medico);
 		
 	}
 
