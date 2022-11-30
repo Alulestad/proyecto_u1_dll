@@ -51,7 +51,7 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 		this.cancerSB.setTipo("C");
 		
 		cita.agendar("123123", LocalDateTime.of(2022,12 ,2,8,30), this.cancerSB, medico);
-		
+		//ad
 	}
 
 }
