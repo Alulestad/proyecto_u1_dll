@@ -1,6 +1,7 @@
 package com.example.demo.banco.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class TransferenciaServieImpl implements ITransferenciaService{
 
 				//DESTINO
 				//1. buscar la cuneta origen
-				CuentaBancaria destino = this.bancariaService.bucarPorNumero(numOrigen);
+				CuentaBancaria destino = this.bancariaService.bucarPorNumero(numDestino);
 				
 				//2. Consultar el saldo de la cuenta destino
 				BigDecimal saldoDestino= destino.getSaldo();
@@ -54,6 +55,14 @@ public class TransferenciaServieImpl implements ITransferenciaService{
 				
 				destino.setSaldo(nuevoSaldoDestino);
 				this.bancariaService.actualizar(destino);
+				
+				Transferencia trans=new Transferencia();
+				trans.setCuentaDestino(numDestino);
+				trans.setCuentaOrigen(numOrigen);
+				trans.setFecha(LocalDateTime.now());
+				trans.setMonto(monto);
+				trans.setNumero("12343");
+				this.iTransferenciaRepository.insertar(trans);
 	}
 	
 	

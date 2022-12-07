@@ -13,7 +13,7 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository{
 
 	//acceso a la base de datos
 	
-		private static List<Transferencia> baseDatos= new ArrayList<>();
+	private static List<Transferencia> baseDatos= new ArrayList<>();
 	
 	@Override
 	public Transferencia buscar(Integer id) {
