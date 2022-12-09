@@ -20,13 +20,40 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository{
 		// TODO Auto-generated method stub
 		//Select * from cuenta C where C.numero=numeroCuenta
 		
+		Transferencia transferencia = new Transferencia();
+		/*cuemnta.setNumero(nueroCuenta);
+		cuenta.setTipo("A");
+		cuenta.setTitular("Edison C");
+		return cuenta;**/
 		
-		return null;
+		for (Transferencia trans : baseDatos)
+		 {
+			if(trans.getNumero().equals(id)){
+				transferencia=trans;
+			}
+		}
+		System.out.println("Se busca la transferencia con id: "+ id);
+		return transferencia;
+
 	}
 
 	@Override
 	public void actualizar(Transferencia transferencia) {
 		// TODO Auto-generated method stub
+		Transferencia trans=null;
+		for (Transferencia trans_buscada : baseDatos)
+		 {
+			if(trans_buscada.getNumero().equals(transferencia.getNumero())){
+				trans=trans_buscada;
+				
+				//baseCuentas.add(cuentaBancaria);
+				
+			}
+		}
+		
+		baseDatos.remove(transferencia);
+		baseDatos.add(trans);
+		System.out.println("Se actualiza la transferencia"+ transferencia);
 		
 	}
 
@@ -39,7 +66,7 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository{
 	@Override
 	public void borrar(Integer id) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Se accede al borrar");
 	}
 
 	@Override
