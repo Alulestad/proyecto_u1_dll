@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +23,7 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 	private ICuentaBancariaService bancariaService;
 	
 	@Autowired
+	@Qualifier("grande")
 	private ITransferenciaService iTransferenciaService;
 
 	public static void main(String[] args) {

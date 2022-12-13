@@ -5,13 +5,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.banco.modelo.CuentaBancaria;
 import com.example.demo.banco.modelo.Transferencia;
 import com.example.demo.banco.repository.ITransferenciaRepository;
 
-@Service
+@Service ("grande")//(value ="grande")
+//short cut: (#grande#)
 public class TransferenciaServieImpl implements ITransferenciaService{
 
 	@Autowired
@@ -50,7 +52,7 @@ public class TransferenciaServieImpl implements ITransferenciaService{
 
 				//3. operacion suma en el destino
 				BigDecimal nuevoSaldoDestino= saldoDestino.add(monto);
-
+				
 				//4. Actualizacion cuneta destino
 				
 				destino.setSaldo(nuevoSaldoDestino);
