@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
-
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +13,11 @@ import com.example.demo.banco.modelo.CuentaBancaria;
 import com.example.demo.banco.modelo.Transferencia;
 import com.example.demo.banco.service.ICuentaBancariaService;
 import com.example.demo.banco.service.ITransferenciaService;
+import com.example.demo.ejercicio1.modelo.Propietario;
+import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IMatriculaService;
+import com.example.demo.ejercicio1.service.IPropietarioService;
+import com.example.demo.ejercicio1.service.IVehiculoService;
 
 
 
@@ -25,7 +30,17 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 	@Autowired
 	@Qualifier("grande")
 	private ITransferenciaService iTransferenciaService;
-
+	
+	@Autowired
+	private IPropietarioService iPropietarioService;
+	
+	@Autowired
+	private IVehiculoService iVehiculoService;
+	
+	@Autowired
+	private IMatriculaService iMatriculaService;
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1DllApplication.class, args);
 		
@@ -33,7 +48,7 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 	}
 	
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) throws Exception {/*
 		// TODO Auto-generated method stub
 		CuentaBancaria cuenta1= new CuentaBancaria();
 		cuenta1.setNumero("0001");
@@ -77,7 +92,38 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 		CuentaBancaria cuentaConsultada1= this.bancariaService.bucarPorNumero("0001");
 		CuentaBancaria cuentaConsultada2= this.bancariaService.bucarPorNumero("0002");
 		System.out.println("Nuevo saldo: "+cuentaConsultada1.getSaldo());
-		System.out.println("Nuevo saldo: "+cuentaConsultada2.getSaldo());
+		System.out.println("Nuevo saldo: "+cuentaConsultada2.getSaldo());*/
+		
+		//Opcion 1
+		Vehiculo vehi = new Vehiculo();
+		vehi.setMarca("TOYOTA");
+		vehi.setPlaca("ASD343");
+		vehi.setPrecio(new BigDecimal(20000));
+		vehi.setTipo("P");
+		
+		this.iVehiculoService.crear(vehi);
+		
+		vehi.setPrecio(new BigDecimal(2000));
+		vehi.setMarca("TOYOTAA");
+		
+		this.iVehiculoService.modificar(vehi);
+		
+		
+		//OP 2
+		Propietario propietario = new Propietario();
+		propietario.setApellido("Llumqiuigjna");
+		propietario.setCedula("");
+		propietario.setFechaNacimiento(LocalDateTime.of(1997,7,7,12,35));
+		propietario.setNombre("Daniel");
+		
+		this.iPropietarioService.guardar(propietario);
+		
+		
+		//OP3
+		this.iMatriculaService.matricular("1123456", "ASD343");
+		
+		System.out.println();
+		
 	}
 
 }
