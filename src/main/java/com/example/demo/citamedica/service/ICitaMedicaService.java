@@ -14,5 +14,5 @@ public interface ICitaMedicaService {
 	public void actualizar(CitaMedica citaMedica);
 	public void eliminar(String numero);
 	
-	public void agendar(String numero, LocalDateTime fcita,	Paciente ph,Medico mh);
+	public void agendar(LocalDateTime fcita,String cedulaPaciente,String cedulaDoctor);
 }

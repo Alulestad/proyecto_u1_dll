@@ -10,11 +10,19 @@ import com.example.demo.citamedica.modelo.CitaMedica;
 import com.example.demo.citamedica.modelo.Medico;
 import com.example.demo.citamedica.modelo.Paciente;
 import com.example.demo.citamedica.repository.ICitaMedicaRepository;
+import com.example.demo.citamedica.repository.IMedicoRepository;
+import com.example.demo.citamedica.repository.IPacienteRepository;
 
 
 
 @Service
 public class CitaMedicaServiceImpl implements ICitaMedicaService {
+	@Autowired
+	private IPacienteRepository iPacienteRepository;
+	
+	@Autowired
+	private IMedicoRepository iMedicoRepository;
+	
 	@Autowired
 	private ICitaMedicaRepository citaMedicaRepository;
 	
@@ -46,16 +54,18 @@ public class CitaMedicaServiceImpl implements ICitaMedicaService {
 	}
 
 	@Override
-	public void agendar(String numero, LocalDateTime fcita, Paciente ph, Medico mh) {
+	public void agendar(LocalDateTime fcita,String cedulaPaciente,String cedulaDoctor) {
 		CitaMedica citaMedica= new CitaMedica();
 		citaMedica.setFechaAgenda(LocalDateTime.now());
 		citaMedica.setFechaCinta(fcita);
-		citaMedica.setPaciente(ph);
-		citaMedica.setMedico(mh);
+		citaMedica.setPaciente(iPacienteRepository.buscar(cedulaPaciente));
+		citaMedica.setMedico(iMedicoRepository.buscar(cedulaDoctor));
+		citaMedica.setNumero(cedulaDoctor.concat(cedulaPaciente));
 		
 		
-		BigDecimal valorDescuento=((PacienteServiceImpl)iPacienteService).calcularDescuento();
-		System.out.println("valor: "+valorDescuento);
+		System.out.println("calculo descuento");
+		System.out.println("Cita generada: "+citaMedica);
+		
 		
 		this.insertar(citaMedica);
 

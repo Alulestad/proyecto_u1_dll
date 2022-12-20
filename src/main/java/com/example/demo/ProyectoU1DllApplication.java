@@ -13,6 +13,9 @@ import com.example.demo.banco.modelo.CuentaBancaria;
 import com.example.demo.banco.modelo.Transferencia;
 import com.example.demo.banco.service.ICuentaBancariaService;
 import com.example.demo.banco.service.ITransferenciaService;
+import com.example.demo.citamedica.service.ICitaMedicaService;
+import com.example.demo.citamedica.service.IMedicoService;
+import com.example.demo.citamedica.service.IPacienteService;
 import com.example.demo.ejercicio1.modelo.Propietario;
 import com.example.demo.ejercicio1.modelo.Vehiculo;
 import com.example.demo.ejercicio1.service.IMatriculaNuevaService;
@@ -23,8 +26,18 @@ import com.example.demo.ejercicio1.service.IVehiculoService;
 
 
 
+
 @SpringBootApplication
 public class ProyectoU1DllApplication implements CommandLineRunner{
+	/////////
+	@Autowired	
+	private ICitaMedicaService citaMedicaService;
+	@Autowired	
+	private IMedicoService iMedicoService;
+	@Autowired	
+	private IPacienteService iPacienteService;
+	/////////
+	
 	@Autowired	
 	private ICuentaBancariaService bancariaService;
 	
@@ -137,6 +150,20 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 		this.iMatriculaService.matricular("1123456", "ASD343");
 		
 		System.out.println();
+		System.out.println("**********************CITAS MEDICAS**********************");
+		
+		com.example.demo.citamedica.modelo.Paciente pacienteTE=new com.example.demo.citamedica.modelo.Paciente();
+		pacienteTE.setCedula("234234823");
+		pacienteTE.setNombre("Daniel");
+		pacienteTE.setTipo("C");
+		iPacienteService.agregar(pacienteTE);
+	
+		com.example.demo.citamedica.modelo.Medico medico=new com.example.demo.citamedica.modelo.Medico();
+		medico.setCedula("24353246");
+		medico.setNombre("Medico Luis");
+		iMedicoService.agregar(medico);
+		
+		citaMedicaService.agendar(LocalDateTime.now(), "234234823", "24353246");
 		
 	}
 
