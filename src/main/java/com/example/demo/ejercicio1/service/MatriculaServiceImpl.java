@@ -43,8 +43,10 @@ public class MatriculaServiceImpl implements IMatriculaService {
 		
 		if (vehiculo.getTipo().equals("P")) {
 			valor=vehiculo.getPrecio().multiply(new BigDecimal(0.15));
-		}else {
+		}else if(vehiculo.getTipo().equals("L")){
 			valor=vehiculo.getPrecio().multiply(new BigDecimal(0.10));
+		}else {
+			//hibrido
 		}
 		
 		//-1 valor menor

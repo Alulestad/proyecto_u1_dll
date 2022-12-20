@@ -15,6 +15,7 @@ import com.example.demo.banco.service.ICuentaBancariaService;
 import com.example.demo.banco.service.ITransferenciaService;
 import com.example.demo.ejercicio1.modelo.Propietario;
 import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IMatriculaNuevaService;
 import com.example.demo.ejercicio1.service.IMatriculaService;
 import com.example.demo.ejercicio1.service.IPropietarioService;
 import com.example.demo.ejercicio1.service.IVehiculoService;
@@ -38,7 +39,18 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 	private IVehiculoService iVehiculoService;
 	
 	@Autowired
-	private IMatriculaService iMatriculaService;
+	@Qualifier("liviano")
+	//private IMatriculaService iMatriculaService;
+	private IMatriculaNuevaService iMatriculaService;
+	
+	@Autowired
+	@Qualifier("pesado")
+	//private IMatriculaService iMatriculaService;
+	private IMatriculaNuevaService iMatriculaServicePesado;
+	
+	/*
+	@Autowired
+	private IMatriculaNuevaService iMatriculaNuevaService;*/
 	
 	
 	public static void main(String[] args) {
@@ -117,6 +129,8 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 		propietario.setNombre("Daniel");
 		
 		this.iPropietarioService.guardar(propietario);
+		
+		
 		
 		
 		//OP3
