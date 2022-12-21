@@ -18,6 +18,7 @@ import com.example.demo.citamedica.service.IMedicoService;
 import com.example.demo.citamedica.service.IPacienteService;
 import com.example.demo.ejercicio1.modelo.Propietario;
 import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IGestorMatriculaService;
 import com.example.demo.ejercicio1.service.IMatriculaNuevaService;
 import com.example.demo.ejercicio1.service.IMatriculaService;
 import com.example.demo.ejercicio1.service.IPropietarioService;
@@ -60,6 +61,11 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 	@Qualifier("pesado")
 	//private IMatriculaService iMatriculaService;
 	private IMatriculaNuevaService iMatriculaServicePesado;
+	
+	@Autowired
+	//private IMatriculaService iMatriculaService;
+	private IGestorMatriculaService gestorMatriculaService;
+	
 	
 	/*
 	@Autowired
@@ -124,7 +130,7 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 		vehi.setMarca("TOYOTA");
 		vehi.setPlaca("ASD343");
 		vehi.setPrecio(new BigDecimal(20000));
-		vehi.setTipo("P");
+		vehi.setTipo("L");
 		
 		this.iVehiculoService.crear(vehi);
 		
@@ -137,7 +143,7 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 		//OP 2
 		Propietario propietario = new Propietario();
 		propietario.setApellido("Llumqiuigjna");
-		propietario.setCedula("");
+		propietario.setCedula("1231321");
 		propietario.setFechaNacimiento(LocalDateTime.of(1997,7,7,12,35));
 		propietario.setNombre("Daniel");
 		
@@ -147,8 +153,23 @@ public class ProyectoU1DllApplication implements CommandLineRunner{
 		
 		
 		//OP3
-		this.iMatriculaService.matricular("1123456", "ASD343");
+		//this.iMatriculaService.matricular("1123456", "ASD343");
+		this.gestorMatriculaService.matricular("1231321","ASD343");
+		System.out.println();
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
 		System.out.println();
 		System.out.println("**********************CITAS MEDICAS**********************");
 		
